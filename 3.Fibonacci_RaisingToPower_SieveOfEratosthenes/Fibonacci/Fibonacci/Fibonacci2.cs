@@ -1,23 +1,29 @@
-﻿using Tester;
+﻿using System.Numerics;
+using Tester;
 
 namespace Fibonacci
 {
+    // Итеративный O(N) алгоритм поиска чисел Фибоначчи.
     public class Fibonacci2 : ITask
     {
         public string Run(string[] data)
         {
-            return null;
+            var n = int.Parse(data[0]);
+            return F(n).ToString();
         }
-        public long F(int n)
+
+        public BigInteger F(int n)
         {
-            if(n==1)
+            if (n == 0)
                 return 0;
-            if(n==2)
+            if (n == 1)
+                return 1;
+            if (n == 2)
                 return 1;
 
-            long f_1 = 1;
-            long f_2 = 0;
-            long result = 0;
+            BigInteger f_1 = 1;
+            BigInteger f_2 = 1;
+            BigInteger result = 0;
 
             for (int i = 3; i <= n; i++)
             {

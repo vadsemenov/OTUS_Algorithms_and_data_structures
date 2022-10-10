@@ -1,51 +1,38 @@
 ﻿using System;
-using System.Linq;
 using Tester;
 
 namespace RisingToPower
 {
+    //Алгоритм возведения в степень через двоичное разложение показателя степени O(2LogN) = O(LogN)
     public class Power3 : ITask
     {
-        private double _number;
-        private double _power;
-        private double _result=1;
-    
         public string Run(string[] data)
         {
-            _number = Double.Parse(data[0]);
-            _power = Double.Parse(data[1]);
-            
-    
-            var res = Math.Round(RisingPower(_number, _power), 11).ToString();
-    
-            return res;
-        }
-        
-        public double RisingPower(double number, double power)
-        {
-            _number = number;
-            _power = power;
+            var number = Convert.ToDecimal(data[0]);
+            var power = Convert.ToInt64(data[1]);
 
-            var binaryArrayPower = Convert.ToString((int) _power, 2)
-                .ToCharArray()
-                .Select(x => Int32.Parse(x.ToString()))
-                .ToArray();
-    
-            return MultipleRecursive(binaryArrayPower,0);
+            var res = Math.Round(RisingPower(number, power), 11);
+
+            return res.ToString();
         }
-    
-        private double MultipleRecursive(int[] binaryArrayPower, int index)
+
+        public decimal RisingPower(decimal number, long power)
         {
-            if (index == binaryArrayPower.Length-1)
+            var n =  power;
+            var d = number;
+            decimal p = 1;
+
+            while (n > 0)
             {
-                _result = _result * Math.Pow(_number, binaryArrayPower[index]);
-                return _result;
+
+                if (n % 2 == 1)
+                    p *= d;
+
+                n /= 2;
+                d *= d;
             }
-    
-            _result = Math.Pow(_result * Math.Pow(_number, binaryArrayPower[index]), 2);
-            index += 1;
-    
-            return MultipleRecursive(binaryArrayPower, index);
+
+            return p;
         }
     }
 }

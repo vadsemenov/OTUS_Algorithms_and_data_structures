@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tester;
 
 namespace Fibonacci
 {
@@ -10,14 +11,23 @@ namespace Fibonacci
     {
         static void Main(string[] args)
         {
-            var f = new Fibonacci();
-            var f2 = new Fibonacci2();
-            var f3 = new Fibonacci3();
+            var tasks = new List<ITask>();
+            tasks.Add(new Fibonacci());
+            tasks.Add(new Fibonacci2());
+            tasks.Add(new Fibonacci3());
+            tasks.Add(new Fibonacci4());
 
-            Console.WriteLine(f.F(19-2));
-            Console.WriteLine(f2.F(19));
-            Console.WriteLine(f3.F(19-1));
+            RunTests(tasks);
             Console.ReadKey();
+        }
+        public static void RunTests(List<ITask> tasks)
+        {
+            var path = @"G:\OTUS\Algorithms and data structures\3.Fibonacci_RaisingToPower_SieveOfEratosthenes\Fibonacci\TestData";
+            foreach (var task in tasks)
+            {
+                var tester = new Tester.Tester(task, path);
+                tester.RunTests();
+            }
         }
     }
 }

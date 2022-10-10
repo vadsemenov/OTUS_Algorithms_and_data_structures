@@ -44,6 +44,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Prime.cs" />
+    <Compile Include="Prime2.cs" />
+    <Compile Include="Prime3.cs" />
+    <Compile Include="Prime5.cs" />
+    <Compile Include="Prime6.cs" />
+    <Compile Include="Prime4.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

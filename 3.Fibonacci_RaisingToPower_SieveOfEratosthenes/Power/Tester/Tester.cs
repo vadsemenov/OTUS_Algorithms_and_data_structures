@@ -21,21 +21,26 @@ namespace Tester
 
             var stopWatch = new Stopwatch();
             stopWatch.Start();
+            Console.WriteLine("================================================================================");
+            Console.WriteLine(task.GetType());
 
             while (true)
             {
-                string inFile = $"{path}test.{nr}.in";
-                string outFile = $"{path}test.{nr}.out";
+                stopWatch.Restart();
+                string inFile = Path.Combine(path, "test." + nr + ".in");
+                string outFile = Path.Combine(path, "test." + nr + ".out");
 
-                if(!File.Exists(inFile)||!File.Exists(outFile))
+                if (!File.Exists(inFile)||!File.Exists(outFile))
                     break;
 
                 Console.WriteLine("------------------------");
                 Console.WriteLine($"Test #{nr}: " + RunTest(inFile, outFile));
+                stopWatch.Stop();
+                Console.WriteLine($"Test time: {stopWatch.ElapsedMilliseconds}");
+
                 nr++;
             }
-            stopWatch.Stop();
-            Console.WriteLine($"Tests time: {stopWatch.ElapsedMilliseconds}");
+           
         }
 
         private bool RunTest(string inFile, string outFile)

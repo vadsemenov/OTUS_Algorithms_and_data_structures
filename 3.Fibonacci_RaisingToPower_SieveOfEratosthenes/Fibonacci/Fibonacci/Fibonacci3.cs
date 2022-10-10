@@ -3,11 +3,13 @@ using Tester;
 
 namespace Fibonacci
 {
+    // Алгоритм поиска чисел Фибоначчи по формуле золотого сечения.
     public class Fibonacci3 :ITask
     {
         public string Run(string[] data)
         {
-            return null;
+            var n = int.Parse(data[0]);
+            return F(n).ToString();
         }
 
         public double F(int n)

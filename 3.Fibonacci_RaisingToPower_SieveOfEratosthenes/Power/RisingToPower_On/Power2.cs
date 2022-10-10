@@ -3,6 +3,7 @@ using Tester;
 
 namespace RisingToPower
 {
+    //Алгоритм возведения в степень через домножение O(N/2+LogN) = O(N)
     public class Power2 : ITask
     {
         private double _number;
@@ -42,6 +43,5 @@ namespace RisingToPower
 
             return _number;
         }
-
     }
 }
