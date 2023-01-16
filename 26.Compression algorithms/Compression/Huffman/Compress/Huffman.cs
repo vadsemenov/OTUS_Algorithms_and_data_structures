@@ -156,9 +156,9 @@ namespace Compression
 
             void NormalizeFreqs()
             {
-                int max = freq.Max();
+                long max = freq.Max();
 
-                if (max < 255)
+                if (max <= 255)
                 {
                     return;
                 }
@@ -167,7 +167,7 @@ namespace Compression
                 {
                     if (freq[i] > 0)
                     {
-                        freq[i] = 1 + freq[i] * 255 / (max + 1);
+                        freq[i] = 1 + (int)((long)freq[i]*255 / (max + 1));
                     }
                 }
             }
